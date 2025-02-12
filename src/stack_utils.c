@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/12 23:10:20 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:44:43 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 t_stack	*stack_init(t_node *node)
 {
-	t_stack *stack;
+	t_stack	*stack;
+
+	if (node == NULL)
+		return (NULL);
 	stack = ft_calloc(1, sizeof(t_stack));
 	if (stack == NULL)
 		return (NULL);
@@ -23,6 +26,26 @@ t_stack	*stack_init(t_node *node)
 	return (stack);
 }
 
+void	stack_add_node(t_stack *stack, t_node *node)
+{
+	if (stack == NULL || node == NULL)
+		return ;
+	push_node(stack->top, node);
+	stack->top = node;
+	stack->size++;
+}
+
+t_node	*stack_remove_node(t_stack *stack)
+{
+	t_node	*temp;
+
+	if (stack == NULL)
+		return (NULL);
+	temp = stack->top;
+	stack->top = temp->previous;
+	pop_node(temp);
+	return (temp);
+}
 void	free_stack(t_stack *stack)
 {
 	t_node	*temp;
@@ -39,9 +62,3 @@ void	free_stack(t_stack *stack)
 	free_node(stack->top);
 	free(stack);
 }
-
-void	swap_top_stack(t_stack *n);
-void	push_stack(t_stack *a, t_stack *b);
-void	rotate_stack(t_stack *n);
-void	reverse_rotate_stack(t_stack *n);
-void	reverse_rotate_stack(t_stack *n);
