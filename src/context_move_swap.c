@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   context_move_swap.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/12 21:30:08 by rorollin         ###   ########.fr       */
+/*   Created: 2025/02/12 22:48:43 by rorollin          #+#    #+#             */
+/*   Updated: 2025/02/12 22:49:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include"push_swap.h"
 
-int	main(int argc, char **argv)
+void	sa(t_context *context)
 {
-	(void) argc;
-	(void) argv;
-	return (0);
+	swap_top_stack(context->stack_a);
+}
+void	sb(t_context *context)
+{
+	swap_top_stack(context->stack_b);
+}
+void	ss(t_context *context)
+{
+	swap_top_stack(context->stack_a);
+	swap_top_stack(context->stack_b);
 }

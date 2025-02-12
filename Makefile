@@ -20,8 +20,6 @@ SOURCES_NAME = main.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/, $(SOURCES_NAME))
 
-SOURCES_BONUS = 
-
 #OBJECTS#######################
 
 OBJ_DIR = obj

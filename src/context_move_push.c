@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   context_move_push.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/12 21:30:08 by rorollin         ###   ########.fr       */
+/*   Created: 2025/02/12 22:49:07 by rorollin          #+#    #+#             */
+/*   Updated: 2025/02/12 22:49:47 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	pa(t_context *context)
 {
-	(void) argc;
-	(void) argv;
-	return (0);
+	push_stack(context->stack_a, context->stack_b);
+}
+void	pb(t_context *context)
+{
+	push_stack(context->stack_b, context->stack_a);
 }
