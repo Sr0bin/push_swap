@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:14:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/12 23:11:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:28:49 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ typedef struct s_node
 {
 	struct s_node	*previous;
 	struct s_node	*next;
-	int			value;
+	int				value;
 }	t_node;
 
-
-t_node	*node_init(int value);
+t_node	*node_init(void);
+void	push_node(t_node *head, t_node *new);
+void	pop_node(t_node *node);
 void	free_node(t_node *node);
 
 typedef struct s_stack
@@ -30,7 +31,6 @@ typedef struct s_stack
 	t_node	*top;
 	size_t	size;
 }	t_stack;
-
 
 t_stack	*stack_init(t_node *node);
 void	free_stack(t_stack *stack);
@@ -45,8 +45,9 @@ typedef struct s_context
 	t_stack	*stack_b;
 }	t_context;
 
+t_context	*context_init(void);
+void		free_context(t_context *context);
 typedef void	(*t_move)(t_context *context);
-
 
 void	sa(t_context *context);
 void	sb(t_context *context);
