@@ -1,0 +1,7 @@
+*.a
+*.o
+obj
+compile_commands.json
+.cache
+bonus
+push_swap
