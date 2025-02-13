@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:14:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 03:47:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 04:52:48 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_context
 	t_stack	*stack_b;
 }	t_context;
 
-t_context	*context_init(void);
+t_context	*context_init(t_stack *stack_a, t_stack *stack_b);
 void		free_context(t_context *context);
 typedef void	(*t_move)(t_context *context);
 
@@ -86,4 +86,6 @@ typedef enum e_move_types
 }	t_move_types;
 t_stack	*fake_stack(size_t n);
 void	print_stack(const t_stack *stack);
+t_context	*fake_context(void);
+void	print_context(t_context *context);
 #endif

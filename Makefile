@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/02/13 04:24:00 by rorollin         ###   ########.fr        #
+#    Updated: 2025/02/13 04:41:29 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,8 @@ NAME = push_swap
 
 SOURCES_DIR = src
 
-SOURCES_CONTEXT = context_utils.c 
-#context_move_push.c context_move_rotate.c context_move_rrotate.c \
-#				  context_move_swap.c 
+SOURCES_CONTEXT = context_utils.c context_move_push.c context_move_rotate.c context_move_rrotate.c \
+				  context_move_swap.c 
 SOURCES_NAME = $(SOURCES_CONTEXT) main.c node_utils.c stack_utils.c debug.c stack_manip.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/, $(SOURCES_NAME))
