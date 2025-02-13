@@ -6,13 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 00:46:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 04:08:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*node_init(void)
+t_node	*node_init(int value)
 {
 	t_node	*node;
 
@@ -21,20 +21,21 @@ t_node	*node_init(void)
 		return (NULL);
 	node->previous = node;
 	node->next = node;
-	// node->value = value;
+	node->value = value;
 	return (node);
 }
 
 void	push_node(t_node *head, t_node *new)
 {
-	t_node	*temp;
+	t_node	*next_node;
 
 	if (head == NULL || new == NULL)
 		return ;
-	temp = head->next;
+	next_node = head->next;
 	head->next = new;
+	new->next = next_node;
 	new->previous = head;
-	temp->previous = new;
+	next_node->previous = new;
 }
 void	pop_node(t_node *node)
 {
@@ -50,7 +51,10 @@ void	free_node(t_node *node)
 {
 	if (node == NULL)
 		return ;
-	node->next->previous = NULL;
+	if (node->previous != NULL)
+		node->previous->next = NULL;
+	if (node->next != NULL)
+		node->next->previous = NULL;
 	free(node);
 	node = NULL;
 }
