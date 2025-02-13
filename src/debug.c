@@ -6,17 +6,17 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:21:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 04:15:29 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 04:57:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
 void	print_stack(const t_stack *stack)
 {
 	size_t	counter;
 	t_node	*temp;
-
 	if (stack == NULL)
 	{
 		printf("Stack is (NULL)");
@@ -52,4 +52,28 @@ t_stack	*fake_stack(size_t n)
 		 temp->value, temp->next->value, temp->previous->value, stack->top->value);
 	}
 	return (stack);
+}
+
+void	print_context(t_context *context)
+{
+	printf("Stack A\n");
+	printf("-----------------------------------------------------\n");
+	print_stack(context->stack_a);
+	printf("Stack B\n");
+	printf("-----------------------------------------------------\n");
+	print_stack(context->stack_b);
+}
+
+t_context	*fake_context(void)
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_context	*context;
+
+	stack_a = fake_stack(10);
+	stack_b = fake_stack(0);
+	context = context_init(stack_a, stack_b);
+	if (context == NULL)
+		return (NULL);
+	return (context);
 }

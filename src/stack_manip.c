@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 00:01:04 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 04:28:01 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 04:38:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	swap_top_stack(t_stack *n)
 	last->previous = second;
 	n->top = second;
 }
-void	push_stack(t_stack *a, t_stack *b);
+void	push_stack(t_stack *giver, t_stack *receiver)
+{
+	stack_add_node(receiver, stack_remove_node(giver));
+}
 void	rotate_stack(t_stack *n)
 {
 	n->top = n->top->previous;

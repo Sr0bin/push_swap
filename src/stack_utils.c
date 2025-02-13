@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 04:13:32 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 05:11:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void	free_stack(t_stack *stack)
 	}
 	free_node(stack->top);
 	free(stack);
+	stack = NULL;
 }
