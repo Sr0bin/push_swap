@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:14:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 00:28:49 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/13 03:47:41 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_node
 	int				value;
 }	t_node;
 
-t_node	*node_init(void);
+t_node	*node_init(int value);
 void	push_node(t_node *head, t_node *new);
 void	pop_node(t_node *node);
 void	free_node(t_node *node);
@@ -33,6 +33,8 @@ typedef struct s_stack
 }	t_stack;
 
 t_stack	*stack_init(t_node *node);
+void	stack_add_node(t_stack *stack, t_node *node);
+t_node	*stack_remove_node(t_stack *stack);
 void	free_stack(t_stack *stack);
 void	swap_top_stack(t_stack *n);
 void	push_stack(t_stack *giver, t_stack *receiver);
@@ -82,4 +84,6 @@ typedef enum e_move_types
 	RRB,//(reverse rotate b): Shift down all elements of stack b by 1. 
 	RRR
 }	t_move_types;
+t_stack	*fake_stack(size_t n);
+void	print_stack(const t_stack *stack);
 #endif
