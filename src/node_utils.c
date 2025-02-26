@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 04:08:03 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/14 04:27:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	pop_node(t_node *node)
 	node->previous = NULL;
 }
 
-void	free_node(t_node *node)
+void	free_node(t_node **node)
 {
-	if (node == NULL)
+	if (*node == NULL)
 		return ;
-	if (node->previous != NULL)
-		node->previous->next = NULL;
-	if (node->next != NULL)
-		node->next->previous = NULL;
-	free(node);
-	node = NULL;
+	if ((*node)->previous != NULL)
+		(*node)->previous->next = NULL;
+	if ((*node)->next != NULL)
+		(*node)->next->previous = NULL;
+	free(*node);
+	*node = NULL;
 }

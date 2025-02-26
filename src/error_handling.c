@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   context_move_rrotate.c                             :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 22:47:42 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/26 21:06:02 by rorollin         ###   ########.fr       */
+/*   Created: 2025/02/21 16:38:49 by rorollin          #+#    #+#             */
+/*   Updated: 2025/02/21 17:03:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_context *context)
+void	error_handling(size_t error_code, t_context **context)
 {
-	if (context == NULL)
+	static	t_context *saved_context;
+
+	if (error_code == 0)
+	{
+		saved_context = *context;
 		return ;
-	reverse_rotate_stack(context->stack_a);
-}
-void	rrb(t_context *context)
-{
-	if (context == NULL)
-		return ;
-	reverse_rotate_stack(context->stack_b);
-}
-void	rrr(t_context *context)
-{
-	if (context == NULL)
-		return ;
-	reverse_rotate_stack(context->stack_a);
-	reverse_rotate_stack(context->stack_b);
+	}
+	if (error_code == MEM_ERROR)
+	{
+		free_context(&saved_context);
+		exit(EXIT_FAILURE);
+	}
 }
