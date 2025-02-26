@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 04:54:26 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/14 06:22:17 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_context	*context_init(t_stack *stack_a, t_stack *stack_b)
 {
 	t_context	*context;
 
+	if (stack_a == NULL || stack_b == NULL)
+		return (NULL);
 	context = ft_calloc(1, sizeof(t_context));
 	if	(context == NULL)
 		return (NULL);
@@ -36,15 +38,17 @@ t_context	*context_init(t_stack *stack_a, t_stack *stack_b)
 	// }
 	return (context);
 }
-void	free_context(t_context *context)
+
+void	free_context(t_context **context)
 {
-	if (context == NULL)
+	if (context == NULL || *context == NULL)
 		return ;
-	free_stack(context->stack_a);
-	free_stack(context->stack_b);
-	free(context);
+	free_stack(&(*context)->stack_a);
+	free_stack(&(*context)->stack_b);
+	free(*context);
+	*context = NULL;
 }
-//
+
 //
 // int	main(void)
 // {

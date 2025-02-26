@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/13 05:11:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/14 06:22:04 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,22 @@ t_node	*stack_remove_node(t_stack *stack)
 	temp = stack->top;
 	stack->top = temp->previous;
 	pop_node(temp);
+	stack->size--;
+	if (stack->size == 0)
+		stack->top = NULL;
 	return (temp);
 }
-
-void	free_stack(t_stack *stack)
+void free_stack(t_stack **stack)
 {
-	t_node	*temp;
+    t_node	*node;
 
-	temp = NULL;
-	if (stack == NULL)
-		return ;
-	while (stack->top != NULL && stack->top->next != NULL)
+	if (*stack == NULL) 
+		return;
+    while ((*stack)->size > 0) 
 	{
-		if (stack->top->next != stack->top)
-			temp = stack->top->next;
-		else
-			temp = NULL;
-		free_node(stack->top);
-		stack->top = temp;
-	}
-	free_node(stack->top);
-	free(stack);
-	stack = NULL;
+        node = stack_remove_node(*stack);
+        free_node(&node);
+    }
+    free(*stack);
+    *stack = NULL;
 }
