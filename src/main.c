@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/28 06:59:12 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/28 22:03:30 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	stack_test(void)
 		print_stack(stack_b);
 		free_stack(&stack_a);
 		free_stack(&stack_b);
+		free(stack_b);
+		printf("%d", stack_b->top->value);
 		counter++;
 	}
 }
@@ -95,7 +97,7 @@ int	main(int argc, char **argv)
 {
 	(void) argc;
 	(void) argv;
-	// stak_test();
+	stack_test();
 	// context_test();
 	parsing_test();
 	// printf("value : %zu",ft_validnumber("46"));
