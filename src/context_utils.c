@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/14 06:22:17 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/28 03:09:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_context	*context_init(t_stack *stack_a, t_stack *stack_b)
 		return (NULL);
 	context = ft_calloc(1, sizeof(t_context));
 	if	(context == NULL)
-		return (NULL);
+		error_handling(MEM_ERROR, &context);
+	error_handling(SET_CONTEXT, &context);
 	context->stack_a = stack_a;
 	context->stack_b = stack_b;
 	// context->stack_a = stack_init(node_init(0));

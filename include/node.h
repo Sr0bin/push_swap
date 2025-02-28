@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   context_move_swap.c                                :+:      :+:    :+:   */
+/*   node.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 22:48:43 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/26 22:29:20 by rorollin         ###   ########.fr       */
+/*   Created: 2025/02/28 03:05:15 by rorollin          #+#    #+#             */
+/*   Updated: 2025/02/28 03:06:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef NODE_H
+# define NODE_H
+# include "struct.h"
 
-void	sa(t_context *context)
-{
-	if (context == NULL)
-		return ;
-	swap_top_stack(context->stack_a);
-}
+//------------------------------------------------- 
+//					Nodes
+//------------------------------------------------- 
 
-void	sb(t_context *context)
-{
-	if (context == NULL)
-		return ;
-	swap_top_stack(context->stack_b);
-}
+t_node	*node_init(int value);
+void	push_node(t_node *head, t_node *new);
+void	pop_node(t_node *node);
+void	free_node(t_node **node);
 
-void	ss(t_context *context)
-{
-	if (context == NULL)
-		return ;
-	swap_top_stack(context->stack_a);
-	swap_top_stack(context->stack_b);
-}
+#endif
