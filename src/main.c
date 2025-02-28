@@ -6,21 +6,23 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/26 20:20:45 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/02/28 06:59:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+void	stack_test(void);
+void	context_test(void);
 void	stack_test(void)
 {
-	
 	t_stack *stack_a;
 	t_stack *stack_b;
 	size_t	counter;
 	size_t	i;
 	// size_t	j;
+
 
 	counter = 0;
 	i = 0;
@@ -75,27 +77,27 @@ void	context_test(void)
 	}
 	context = NULL;
 }
-
-void	realloc_test()
+ void	parsing_test(void);
+ void	parsing_test(void)
 {
-	char	*str;
-	size_t	counter;
+	int	*array1;
+	int	*array2;
+	char *test;
 
-	str = ft_strdup("test");
-	counter = 0;
-	str = ft_realloc(str, 8);
-	while(counter < 8)
-		printf("%c", str[counter++]);
-	free(str);
-
+	test = ft_strdup("486 897 123 458 741");
+	array1 = array_create(test);
+	array2 = array_create(test);
+	array1 = array_join(&array1, &array2);
+	free(array1);
+	free(test);
 }
-
 int	main(int argc, char **argv)
 {
 	(void) argc;
 	(void) argv;
-	// stack_test();
-	context_test();
-	// realloc_test();
+	// stak_test();
+	// context_test();
+	parsing_test();
+	// printf("value : %zu",ft_validnumber("46"));
 	return (EXIT_SUCCESS);
 }
