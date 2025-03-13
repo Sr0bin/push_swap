@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:03:10 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/28 03:07:20 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:16:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 //					Context
 //------------------------------------------------- 
 
-t_context	*context_init(t_stack *stack_a, t_stack *stack_b);
+t_context	*context_init(int argc, char **argv);
 void		free_context(t_context **context);
 
 //------------------------------------------------- 
 //				Moves for context
 //------------------------------------------------- 
-typedef void	(*t_move)(t_context *context);
 
 void	sa(t_context *context);
 void	sb(t_context *context);
