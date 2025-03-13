@@ -6,13 +6,27 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/28 03:09:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:16:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_context	*context_init(t_stack *stack_a, t_stack *stack_b)
+t_context	*context_init(int argc, char **argv)
+{
+	t_context	*context;
+
+	context = ft_calloc(1, sizeof(t_context));
+	if	(context == NULL)
+		error_handling(MEM_ERROR, &context);
+	error_handling(SET_CONTEXT, &context);
+	array_populate(argc, argv, context);
+	array_valid(context->array);
+	context->stack_a = stack_populate(context->array);
+	context->stack_b = stack_init(NULL);
+	return (context);
+}
+t_context	*context_init_debug(t_stack *stack_a, t_stack *stack_b)
 {
 	t_context	*context;
 
@@ -24,19 +38,6 @@ t_context	*context_init(t_stack *stack_a, t_stack *stack_b)
 	error_handling(SET_CONTEXT, &context);
 	context->stack_a = stack_a;
 	context->stack_b = stack_b;
-	// context->stack_a = stack_init(node_init(0));
-	// if (context->stack_a == NULL)
-	// {
-	// 	free(context);
-	// 	return (NULL);
-	// }
-	// context->stack_b = stack_init(node_init(0));
-	// if (context->stack_b == NULL)
-	// {
-	// 	free_stack(context->stack_a);
-	// 	free(context);
-	// 	return (NULL);
-	// }
 	return (context);
 }
 
@@ -46,6 +47,7 @@ void	free_context(t_context **context)
 		return ;
 	free_stack(&(*context)->stack_a);
 	free_stack(&(*context)->stack_b);
+	free((*context)->array);
 	free(*context);
 	*context = NULL;
 }

@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/02/28 06:53:12 by rorollin         ###   ########.fr        #
+#    Updated: 2025/03/13 14:59:03 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES_DIR = src
 SOURCES_CONTEXT = context_utils.c context_move_push.c context_move_rotate.c context_move_rrotate.c \
 				  context_move_swap.c 
 SOURCES_NAME = $(SOURCES_CONTEXT) main.c node_utils.c stack_utils.c debug.c stack_manip.c error_handling.c\
-			   parsing.c
+			   parsing.c array_utils.c test.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/, $(SOURCES_NAME))
 
@@ -54,7 +54,7 @@ COMPILER = cc
 CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wstrict-prototypes -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c2x
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3
 

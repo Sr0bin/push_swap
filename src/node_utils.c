@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/27 23:32:59 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:01:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*node_init(int value)
 
 	node = ft_calloc(1, sizeof(t_node));
 	if (node == NULL)
-		return (NULL);
+		error_handling(MEM_ERROR, NULL);
 	node->previous = node;
 	node->next = node;
 	node->value = value;

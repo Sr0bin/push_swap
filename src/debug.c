@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:21:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/02/14 03:40:08 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:16:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ void	print_stack(const t_stack *stack)
 		 temp->value, temp, temp->next, temp->previous);
 		temp = temp->previous;
 		counter--;
+	}
+}
+void	print_array(int	*array)
+{
+	int	counter;
+
+	counter = 0;
+	while(counter <= array[0])
+	{
+		printf("Array index %d : \n Array value : %d \n", counter, array[counter]);
+		counter++;
 	}
 }
 t_stack	*fake_stack(size_t n)
@@ -73,8 +84,9 @@ t_context	*fake_context(size_t a, size_t b)
 	t_context	*context;
 
 	stack_a = fake_stack(a);
+	context = NULL;
 	stack_b = fake_stack(b);
-	context = context_init(stack_a, stack_b);
+	context = context_init_debug(stack_a, stack_b);
 	if (context == NULL)
 		return (NULL);
 	return (context);
