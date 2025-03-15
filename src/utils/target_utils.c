@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   target_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 18:14:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 18:53:16 by rorollin         ###   ########.fr       */
+/*   Created: 2025/03/15 18:47:49 by rorollin          #+#    #+#             */
+/*   Updated: 2025/03/15 18:50:40 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "context.h"
-# include "error.h"
-# include "node.h"
-# include "stack.h"
-# include "parsing.h"
-# include "movelist.h"
-# include "target.h"
-#endif
+#include "push_swap.h"
+
+void	free_target(t_target *target)
+{
+	free_movelist(&(target->movelist));
+}

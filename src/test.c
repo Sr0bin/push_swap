@@ -6,12 +6,14 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:58:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/13 15:39:46 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:39:32 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "error.h"
+#include "list.h"
+#include "movelist.h"
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -91,4 +93,15 @@ void	context_test(void)
 	print_array(array1);
 	free(array1);
 	free(test);
+}
+
+
+void	movelist_test(void)
+{
+	t_list	*movelist;
+
+	movelist = ft_lstnew(sa);
+	movelist_add_n(&movelist, rrr, 1);
+	print_movelist(movelist);
+	free_movelist(&movelist);
 }
