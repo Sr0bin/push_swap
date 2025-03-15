@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 18:19:36 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:48:53 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_stack	*stack_populate(int *array)
 	counter = 1;
 	if (array[0] < 1)
 		return (NULL);
-	stack = stack_init(node_init(array[counter]));
+	stack = stack_init(node_init(array[array[0] - counter + 1]));
 	while (counter < array[0])
-		stack_add_node(stack, node_init(array[++counter]));
+		stack_add_node(stack, node_init(array[(array[0] - ++counter) + 1]));
 	return (stack);
 }

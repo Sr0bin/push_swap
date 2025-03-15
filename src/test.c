@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:58:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 18:39:32 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:42:04 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,28 @@ void	movelist_test(void)
 	movelist_add_n(&movelist, rrr, 1);
 	print_movelist(movelist);
 	free_movelist(&movelist);
+}
+static void	print_node(t_node *node)
+{
+		printf("-----------------------------------------------------\n");
+		printf("Node with value : %i\n Address : %p \n Next : %p \n Previous : %p\n", 
+		 node->value, node, node->next, node->previous);
+}
+
+void	algo_test(t_context *context)
+{
+	t_node	*current_node;
+	t_stack *stack;
+	size_t	counter;
+
+	counter = 0;
+	stack = context->stack_a;
+	current_node = stack->top;
+	while (counter < stack->size)
+	{
+		printf("Node numero : %d\n", depth_node(*stack, current_node));
+		print_node(current_node);
+		current_node = current_node->previous;
+		counter++;
+	}
 }

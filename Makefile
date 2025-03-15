@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/03/15 19:03:33 by rorollin         ###   ########.fr        #
+#    Updated: 2025/03/15 19:29:38 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,13 @@ SOURCES_CONTEXT =  context_move_push.c context_move_rotate.c context_move_rrotat
 SOURCES_NAME = main.c   debug.c stack_manip.c error_handling.c\
 			   parsing.c test.c movelist_print.c 
 
+SOURCES_ALGO = find_target.c
+
 SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
 		  $(addprefix utils/, $(SOURCES_UTILS))\
 		  $(addprefix context/, $(SOURCES_CONTEXT))\
+		  $(addprefix algo/, $(SOURCES_ALGO))\
 		  )
 		  
 
