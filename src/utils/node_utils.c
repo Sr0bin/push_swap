@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 17:01:21 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:52:22 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	free_node(t_node **node)
 		(*node)->previous->next = NULL;
 	if ((*node)->next != NULL)
 		(*node)->next->previous = NULL;
+	free_target(&((*node)->target));
 	free(*node);
 	*node = NULL;
 }

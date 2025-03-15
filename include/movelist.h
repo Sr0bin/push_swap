@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   movelist.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 18:14:11 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 18:53:16 by rorollin         ###   ########.fr       */
+/*   Created: 2025/03/14 16:15:43 by rorollin          #+#    #+#             */
+/*   Updated: 2025/03/15 18:53:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "context.h"
-# include "error.h"
-# include "node.h"
-# include "stack.h"
-# include "parsing.h"
-# include "movelist.h"
-# include "target.h"
+#ifndef MOVELIST_H
+# define MOVELIST_H
+# include "list.h"
+# include "struct.h"
+
+void	print_movelist(t_list *movelist);
+void	movelist_add_n(t_list **movelist, t_move move, size_t n);
+void	free_movelist(t_list **movelist);
+t_list	*movelist_init(t_move move);
 #endif

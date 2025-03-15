@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movelist_utils.c                                   :+:      :+:    :+:   */
+/*   movelist_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 15:40:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/13 16:13:20 by rorollin         ###   ########.fr       */
+/*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
+/*   Updated: 2025/03/15 18:40:58 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	**get_move_names(void)
+static char	(*get_move_names(void))[11][6]
 {
-	static char	move_names[11][5];
+	static char	move_names[11][6];
 	static char	initialized;
-	
+
 	if (!initialized)
 	{
-		ft_strlcpy(move_names[0], "(sa)", 5);
-        ft_strlcpy(move_names[1], "(sb)", 5);
-        ft_strlcpy(move_names[2], "(ss)", 5);
-        ft_strlcpy(move_names[3], "(pa)", 5);
-        ft_strlcpy(move_names[4], "(pb)", 5);
-        ft_strlcpy(move_names[5], "(ra)", 5);
-        ft_strlcpy(move_names[6], "(rb)", 5);
-        ft_strlcpy(move_names[7], "(rr)", 5);
-        ft_strlcpy(move_names[8], "(rra)", 5);
-        ft_strlcpy(move_names[9], "(rrb)", 5);
-        ft_strlcpy(move_names[10], "(rrr)", 5);
-        initialized = 1;
+		ft_strlcpy(move_names[0], "(sa)\0", 5);
+		ft_strlcpy(move_names[1], "(sb)\0", 5);
+		ft_strlcpy(move_names[2], "(ss)\0", 5);
+		ft_strlcpy(move_names[3], "(pa)\0", 5);
+		ft_strlcpy(move_names[4], "(pb)\0", 5);
+		ft_strlcpy(move_names[5], "(ra)\0", 5);
+		ft_strlcpy(move_names[6], "(rb)\0", 5);
+		ft_strlcpy(move_names[7], "(rr)\0", 5);
+		ft_strlcpy(move_names[8], "(rra)\0", 6);
+		ft_strlcpy(move_names[9], "(rrb)\0", 6);
+		ft_strlcpy(move_names[10], "(rrr)\0", 6);
+		initialized = 1;
 	}
-	return (char **) move_names;
-
+	return (&move_names);
 }
 
 static t_move	*get_movelist(void)
 {
 	static t_move	movelist[11];
 	static char		initialized;
-	
+
 	if (initialized)
 		return (movelist);
 	movelist[0] = sa;
@@ -71,17 +70,16 @@ static int	get_move_index(t_move move)
 	}
 	return (-1);
 }
-
-void	print_movelist(t_move *movelist)
+void	print_movelist(t_list *movelist)
 {
-	size_t	counter;
-	char **move_names;
+	char	(*move_names)[11][6];
+	int		index;
 
-	counter = 0;
 	move_names = get_move_names();
-	while (movelist[counter] != NULL)
+	while (movelist != NULL)
 	{
-		ft_printf("%s\n", move_names[get_move_index(movelist[counter])]);	
-		counter++;
+		index = get_move_index((t_move) movelist->content);
+		ft_printf("%s\n", (*move_names)[index]);
+		movelist = movelist->next;
 	}
 }
