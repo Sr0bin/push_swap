@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:58:50 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/14 16:20:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/15 19:23:58 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	context_test(void);
 void	stack_test(void);
 void	parsing_test(void);
 void	movelist_test(void);
+void	algo_test(t_context *context);
 #endif
