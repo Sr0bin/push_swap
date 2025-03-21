@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 18:52:22 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:18:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_node	*node_init(int value)
 	node->previous = node;
 	node->next = node;
 	node->value = value;
+	node->target = target_init();
 	return (node);
 }
 
@@ -49,13 +50,13 @@ void	pop_node(t_node *node)
 
 void	free_node(t_node **node)
 {
+	// free_target(&((*node)->target));
 	if (*node == NULL)
 		return ;
 	if ((*node)->previous != NULL)
 		(*node)->previous->next = NULL;
 	if ((*node)->next != NULL)
 		(*node)->next->previous = NULL;
-	free_target(&((*node)->target));
 	free(*node);
 	*node = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:40:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 18:53:55 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:07:16 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static void	movelist_free(void *p)
 
 void	free_movelist(t_list **movelist)
 {
-	ft_lstclear(&(*movelist), movelist_free);
+	ft_lstclear(movelist, movelist_free);
+	*movelist = NULL;
+	movelist = NULL;
 }
 
 t_list	*movelist_init(t_move move)
@@ -44,7 +46,7 @@ void	movelist_add_n(t_list **movelist, t_move move, size_t n)
 		node = ft_lstnew(move);
 		if (node == NULL)
 			error_handling(MEM_ERROR, NULL);
-		ft_lstadd_back(&(*movelist), node);
-		counter ++;
+		ft_lstadd_back(movelist, node);
+		counter++;
 	}
 }
