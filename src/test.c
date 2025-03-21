@@ -6,11 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:58:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 19:42:04 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:16:05 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+#include "context.h"
 #include "error.h"
 #include "list.h"
 #include "movelist.h"
@@ -100,8 +101,11 @@ void	movelist_test(void)
 {
 	t_list	*movelist;
 
-	movelist = ft_lstnew(sa);
-	movelist_add_n(&movelist, rrr, 1);
+	movelist = NULL;
+	free_movelist(&movelist);
+	movelist_add_n(&movelist, ra, 2);
+	movelist_add_n(&movelist, rb, 0);
+	movelist_add_n(&movelist, pa, 1);
 	print_movelist(movelist);
 	free_movelist(&movelist);
 }
@@ -123,7 +127,7 @@ void	algo_test(t_context *context)
 	current_node = stack->top;
 	while (counter < stack->size)
 	{
-		printf("Node numero : %d\n", depth_node(*stack, current_node));
+		printf("Node number : %d\n", depth_node(*stack, current_node));
 		print_node(current_node);
 		current_node = current_node->previous;
 		counter++;

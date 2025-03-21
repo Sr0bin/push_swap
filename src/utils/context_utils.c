@@ -6,10 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 18:16:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:30:02 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "list.h"
 #include "push_swap.h"
 
 t_context	*context_init(int argc, char **argv)
@@ -24,8 +25,42 @@ t_context	*context_init(int argc, char **argv)
 	array_valid(context->array);
 	context->stack_a = stack_populate(context->array);
 	context->stack_b = stack_init(NULL);
+	context->final_movelist = NULL;
 	return (context);
 }
+
+void	apply_movelist(t_context *context, t_list *movelist)
+{
+	t_list	*current_move;
+
+	current_move = movelist;
+	while (current_move != NULL)
+	{
+		((t_move)movelist->content)(context);
+		current_move = current_move->next;
+	}
+
+}
+
+void	append_movelist(t_context *context, t_list *movelist)
+{
+	t_list	*current_node;
+
+	if (context->final_movelist == NULL)
+	{
+		context->final_movelist = movelist;
+		return ;
+	}
+	current_node = context->final_movelist;
+	while (current_node != NULL)
+	{
+		if (current_node == movelist)
+			return ;
+		current_node = current_node->next;
+	}
+	ft_lstadd_back(&context->final_movelist, movelist);
+}
+
 t_context	*context_init_debug(t_stack *stack_a, t_stack *stack_b)
 {
 	t_context	*context;
@@ -48,6 +83,7 @@ void	free_context(t_context **context)
 	free_stack(&(*context)->stack_a);
 	free_stack(&(*context)->stack_b);
 	free((*context)->array);
+	free_movelist(&(*context)->final_movelist);
 	free(*context);
 	*context = NULL;
 }

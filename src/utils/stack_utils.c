@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 17:18:02 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:39:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ void	stack_add_node(t_stack *stack, t_node *node)
 {
 	if (stack == NULL || node == NULL)
 		return ;
-	push_node(stack->top, node);
+	if (stack->top == NULL)
+	{
+		node->previous = node;
+		node->next = node;
+	}
+	else
+		push_node(stack->top, node);
 	stack->top = node;
 	stack->size++;
 }
@@ -45,7 +51,7 @@ t_node	*stack_remove_node(t_stack *stack)
 	stack->top = temp->previous;
 	pop_node(temp);
 	stack->size--;
-	if (stack->size == 0)
+	if (stack->size == 1)
 		stack->top = NULL;
 	return (temp);
 }
