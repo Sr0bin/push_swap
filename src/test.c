@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:58:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/21 19:16:05 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:04:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,6 @@ void	movelist_test(void)
 	print_movelist(movelist);
 	free_movelist(&movelist);
 }
-static void	print_node(t_node *node)
-{
-		printf("-----------------------------------------------------\n");
-		printf("Node with value : %i\n Address : %p \n Next : %p \n Previous : %p\n", 
-		 node->value, node, node->next, node->previous);
-}
 
 void	algo_test(t_context *context)
 {
@@ -129,7 +123,33 @@ void	algo_test(t_context *context)
 	{
 		printf("Node number : %d\n", depth_node(*stack, current_node));
 		print_node(current_node);
-		current_node = current_node->previous;
+		current_node = current_node->prev;
 		counter++;
 	}
+}
+
+void	sorting_test(t_context *context)
+{
+	movelist_add_n(&context->final_movelist, ra, 3);
+	print_movelist(context->final_movelist);
+	apply_movelist(context, context->final_movelist);
+	print_context(context);
+	printf("\n Sorting state value :  %d\n", is_stack_sorted(context->stack_a));
+}
+void	inserted_test(void)
+{
+	t_context *context;
+	int	stack_b_array[6] = {5, 1, 2, 3, 4, 5};
+	int	stack_a_array[6] = {5, 12, 11, 10, 9, 6};
+
+	context = context_init_debug(stack_populate((int *)&stack_a_array), stack_populate((int *)&stack_b_array));
+	/*print_context(context);*/
+	movelist_add_n(&(context->final_movelist), rb, 1);
+	for (int i = 0; i <= (int) context->stack_a->size + 5;i++)
+	{
+		movelist_add_n(&(context->final_movelist), ra, 1);
+		apply_movelist(context, context->final_movelist);
+		printf("\nStack b is : %d\n", is_stack_insertable(context->stack_a, context->stack_b));
+	}
+	free_context(&context);
 }

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:21:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 18:16:12 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/24 18:49:44 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,37 @@ void	print_stack(const t_stack *stack)
 	counter = stack->size;
 	temp = stack->top;
 	printf("-----------------------------------------------------\n");
-	printf("Stack size = %zu\n", stack->size);
-	while (counter != 0 && temp != NULL && temp->previous != NULL && temp->next != NULL)
+	printf("Stack size = %zu | Highest : %d | Lowest : %d\n", stack->size, stack->high, stack->low);
+	while (counter != 0 && temp != NULL && temp->prev != NULL && temp->next != NULL)
 	{
-		printf("-----------------------------------------------------\n");
-		printf("Node with value : %i\n Address : %p \n Next : %p \n Previous : %p\n", 
-		 temp->value, temp, temp->next, temp->previous);
-		temp = temp->previous;
+		print_node(temp);
+		temp = temp->prev;
 		counter--;
 	}
+}
+void	print_node(t_node *node)
+{
+		if (node == NULL)
+		{
+			printf("(null) Node\n");
+			return ;
+
+		}
+		printf("-----------------------------------------------------\n");
+		printf("Node with value : %i\n Address : %p \n Next : %p \n Previous : %p\n", 
+		 node->value, node, node->next, node->prev);
+}
+void	print_target(t_node *node)
+{
+	printf("-----------------------------------------------------\n");
+	printf("Node : \n");
+	print_node(node);
+	printf("-----------------------------------------------------\n");
+	printf("Targeting Node : \n");
+	print_node(node->target.target_node);
+	printf("-----------------------------------------------------\n");
+	printf("With Movelist : \n");
+	print_movelist(node->target.movelist);
 }
 void	print_array(int	*array)
 {

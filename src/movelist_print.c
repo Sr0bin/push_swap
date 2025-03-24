@@ -6,11 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/17 19:19:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:32:55 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static char	(*get_move_names(void))[11][6]
 {
@@ -76,6 +77,7 @@ void	print_movelist(t_list *movelist)
 	int		index;
 
 	move_names = get_move_names();
+	printf("\n-----------------\n Movelist at adress : %p \n", movelist);
 	while (movelist != NULL)
 	{
 		index = get_move_index((t_move) movelist->content);

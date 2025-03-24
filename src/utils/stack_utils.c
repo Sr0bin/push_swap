@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/21 19:39:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:28:49 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,18 @@ t_stack	*stack_init(t_node *node)
 	if (stack == NULL)
 		error_handling(MEM_ERROR, NULL);
 	stack->top = node;
-	stack->size = 1;
 	if (node == NULL)
+	{
 		stack->size = 0;
+		stack->high = 0;
+		stack->low = 0;
+	}
+	else
+	{
+		stack->size = 1;
+		stack->high = node->value;
+		stack->low = node->value;
+	}
 	return (stack);
 }
 
@@ -32,13 +41,17 @@ void	stack_add_node(t_stack *stack, t_node *node)
 		return ;
 	if (stack->top == NULL)
 	{
-		node->previous = node;
+		node->prev = node;
 		node->next = node;
 	}
 	else
 		push_node(stack->top, node);
 	stack->top = node;
 	stack->size++;
+	if (node->value > stack->high)
+		stack->high = node->value;
+	if (node->value < stack->low)
+		stack->low = node->value;
 }
 
 t_node	*stack_remove_node(t_stack *stack)
@@ -48,13 +61,16 @@ t_node	*stack_remove_node(t_stack *stack)
 	if (stack == NULL)
 		return (NULL);
 	temp = stack->top;
-	stack->top = temp->previous;
+	stack->top = temp->prev;
 	pop_node(temp);
 	stack->size--;
-	if (stack->size == 1)
+	if (stack->size == 0)
 		stack->top = NULL;
+	stack->high = stack_highest(stack);
+	stack->low = stack_lowest(stack);
 	return (temp);
 }
+
 void free_stack(t_stack **stack)
 {
     t_node	*node;
