@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/21 12:18:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:27:42 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*node_init(int value)
 	node = ft_calloc(1, sizeof(t_node));
 	if (node == NULL)
 		error_handling(MEM_ERROR, NULL);
-	node->previous = node;
+	node->prev = node;
 	node->next = node;
 	node->value = value;
 	node->target = target_init();
@@ -35,17 +35,17 @@ void	push_node(t_node *head, t_node *new)
 	next_node = head->next;
 	head->next = new;
 	new->next = next_node;
-	new->previous = head;
-	next_node->previous = new;
+	new->prev = head;
+	next_node->prev = new;
 }
 void	pop_node(t_node *node)
 {
 	if (node == NULL)
 		return ;
-	node->previous->next = node->next;
-	node->next->previous = node->previous;
+	node->prev->next = node->next;
+	node->next->prev = node->prev;
 	node->next = NULL;
-	node->previous = NULL;
+	node->prev = NULL;
 }
 
 void	free_node(t_node **node)
@@ -53,10 +53,10 @@ void	free_node(t_node **node)
 	// free_target(&((*node)->target));
 	if (*node == NULL)
 		return ;
-	if ((*node)->previous != NULL)
-		(*node)->previous->next = NULL;
+	if ((*node)->prev != NULL)
+		(*node)->prev->next = NULL;
 	if ((*node)->next != NULL)
-		(*node)->next->previous = NULL;
+		(*node)->next->prev = NULL;
 	free(*node);
 	*node = NULL;
 }

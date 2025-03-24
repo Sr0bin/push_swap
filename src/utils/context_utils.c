@@ -6,12 +6,13 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/21 19:30:02 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:49:29 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include "push_swap.h"
+#include <stdio.h>
 
 t_context	*context_init(int argc, char **argv)
 {
@@ -36,7 +37,7 @@ void	apply_movelist(t_context *context, t_list *movelist)
 	current_move = movelist;
 	while (current_move != NULL)
 	{
-		((t_move)movelist->content)(context);
+		((t_move)current_move->content)(context);
 		current_move = current_move->next;
 	}
 

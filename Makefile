@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/03/15 19:29:38 by rorollin         ###   ########.fr        #
+#    Updated: 2025/03/24 15:32:37 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME = push_swap
 
 SOURCES_DIR = src
 SOURCES_UTILS = context_utils.c node_utils.c stack_utils.c\
-				array_utils.c movelist_utils.c target_utils.c
+				array_utils.c movelist_utils.c target_utils.c\
+				stack_stat.c
 
 SOURCES_CONTEXT =  context_move_push.c context_move_rotate.c context_move_rrotate.c \
 				   context_move_swap.c 

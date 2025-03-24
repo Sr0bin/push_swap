@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:00:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/18 17:42:53 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:27:55 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_target
 
 typedef struct s_node
 {
-	struct s_node	*previous;
+	struct s_node	*prev;
 	struct s_node	*next;
 	int				value;
 	t_target		target;
@@ -54,6 +54,8 @@ typedef struct s_stack
 {
 	t_node	*top;
 	size_t	size;
+	int		high;
+	int		low;
 }	t_stack;
 
 //------------------------------------------------- 
