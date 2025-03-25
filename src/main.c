@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 17:59:17 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:45:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 	// movelist = NULL;
 	// movelist2 = NULL;
 	context = context_init(argc, argv); 
-	print_context(context);
+	/*print_context(context);*/
 	stack_a_loop(context);
-	print_context(context);
+	/*print_context(context);*/
 	free_context(&context);
 	// algo_test(context);
 	

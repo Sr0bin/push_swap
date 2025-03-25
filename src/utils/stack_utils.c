@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 17:28:49 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:49:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	stack_add_node(t_stack *stack, t_node *node)
 	{
 		node->prev = node;
 		node->next = node;
+		stack->low = node->value;
+		stack->high = node->value;
 	}
 	else
 		push_node(stack->top, node);

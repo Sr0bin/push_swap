@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/22 18:32:55 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:46:36 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	print_movelist(t_list *movelist)
 	int		index;
 
 	move_names = get_move_names();
-	printf("\n-----------------\n Movelist at adress : %p \n", movelist);
+	/*printf("\n-----------------\n Movelist at adress : %p \n", movelist);*/
 	while (movelist != NULL)
 	{
 		index = get_move_index((t_move) movelist->content);

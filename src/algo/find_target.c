@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 19:07:00 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 19:49:48 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:45:46 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,44 @@ int	is_stack_insertable(t_stack *receiver, t_stack *ins)
 /**/
 /*	}*/
 /*}*/
+
+t_node	*find_target_inside(t_context context, t_node *node)
+{
+	t_node	*target_node;
+	size_t	counter;
+
+	target_node = context.stack_b->top;
+	counter = 0;
+	while (counter++ < context.stack_b->size)
+	{
+		if (node->value > target_node->value && node->value < target_node->next->value)
+			break;
+		target_node = target_node->prev;
+	}
+	return (target_node);
+}
+
+t_node	*find_target_new_HL(t_context context, t_node *node)
+{
+	t_node	*target_node;
+	size_t	counter;
+	(void) node;
+
+	target_node = context.stack_b->top;
+	counter = 0;
+	while (counter++ < context.stack_b->size)
+	{
+		if (target_node->value > target_node->next->value)
+			break;
+		target_node = target_node->prev;
+	}
+	return (target_node);
+}
 void	find_target(t_context context, t_node *node)
 {
 	t_node	*target_node;
 	int		depth_a;
 	int		depth_b;
-	size_t	counter;
 
 	if (context.stack_b->size == 0)
 	{
@@ -104,13 +136,10 @@ void	find_target(t_context context, t_node *node)
 	}
 	depth_a = depth_node(*(context.stack_a), node);
 	target_node = context.stack_b->top;
-	counter = 0;
-	while (target_node != NULL && counter++ < context.stack_b->size)
-	{
-		if (target_node->value < node->value)
-			break ;
-		target_node = target_node->prev;
-	}
+	if (node->value > context.stack_b->high || node->value < context.stack_b->low )
+		target_node = find_target_new_HL(context, node);
+	else
+		target_node = find_target_inside(context, node);
 	depth_b  = depth_node(*(context.stack_b), target_node);
 	free_target(&(node->target));
 	movelist_add_n(&(node->target.movelist), ra, (size_t) depth_a);
@@ -153,7 +182,7 @@ void	apply_best_moves(t_context *context)
 		}
 		temp_node = temp_node->prev;
 	}
-	print_target(best_node);
+	/*print_target(best_node);*/
 	append_movelist(context, best_node->target.movelist);
 	apply_movelist(context, best_node->target.movelist);
 	/*print_context(context);*/
@@ -165,9 +194,10 @@ void	stack_a_loop(t_context *context)
 {
 	while (context->stack_a->top != NULL)
 	{
-		print_context(context);
+		/*print_context(context);*/
 		update_stack_target(context);
 		apply_best_moves(context);
 	}
+	movelist_add_n(&context->final_movelist, pa, context->stack_b->size);
 	print_movelist(context->final_movelist);
 }
