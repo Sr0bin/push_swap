@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 17:27:42 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:23:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	pop_node(t_node *node)
 
 void	free_node(t_node **node)
 {
-	// free_target(&((*node)->target));
 	if (*node == NULL)
 		return ;
 	if ((*node)->prev != NULL)

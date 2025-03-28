@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:58:50 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 18:04:30 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:36:18 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	error_handling(size_t error_code, t_context **context);
 //					Debug
 //------------------------------------------------- 
 t_stack	*fake_stack(size_t n);
-void	print_stack(const t_stack *stack);
+void	p_stack(const t_stack *stack);
 t_context	*fake_context(size_t a, size_t b);
-void	print_context(t_context *context);
-void	print_node(t_node *node);
-void	print_target(t_node *node);
-void	print_array(int	*array);
+void	p_context(t_context *context);
+void	p_node(t_node *node);
+void	p_target(t_node *node);
+void	p_array(int	*array);
 t_context	*context_init_debug(t_stack *stack_a, t_stack *stack_b);
 void	context_test(void);
 void	stack_test(void);

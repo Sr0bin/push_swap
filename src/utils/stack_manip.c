@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 00:01:04 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 17:27:42 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:25:53 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	swap_top_stack(t_stack *n)
 	t_node	*last;
 
 	if (!n || !n->top || n->top == n->top->prev)
-        return ;
+		return ;
 	first = n->top;
 	second = first->prev;
 	if (n->size == 2)

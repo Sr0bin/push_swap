@@ -6,11 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 14:58:26 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 18:04:34 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:33:18 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+#include "algo.h"
 #include "context.h"
 #include "error.h"
 #include "list.h"
@@ -42,7 +43,7 @@ void	stack_test(void)
 		// rotate_stack(stack);
 		// reverse_rotate_stack(stack);
 		// print_stack(stack_a);
-		print_stack(stack_b);
+		p_stack(stack_b);
 		free_stack(&stack_a);
 		free_stack(&stack_b);
 		free(stack_b);
@@ -91,7 +92,7 @@ void	context_test(void)
 	array1 = array_init(test);
 	array2 = array_init(test);
 	array1 = array_join(&array1, &array2);
-	print_array(array1);
+	p_array(array1);
 	free(array1);
 	free(test);
 }
@@ -103,9 +104,12 @@ void	movelist_test(void)
 
 	movelist = NULL;
 	free_movelist(&movelist);
-	movelist_add_n(&movelist, ra, 2);
-	movelist_add_n(&movelist, rb, 0);
-	movelist_add_n(&movelist, pa, 1);
+	movelist_add_n(&movelist, pa, 2);
+	movelist_add_n(&movelist, rra, 3);
+	movelist_add_n(&movelist, rrb, 2);
+	movelist_add_n(&movelist, pa, 2);
+	movelist_add_n(&movelist, pb, 2);
+	optimize_movelist(&movelist);
 	print_movelist(movelist);
 	free_movelist(&movelist);
 }
@@ -122,7 +126,7 @@ void	algo_test(t_context *context)
 	while (counter < stack->size)
 	{
 		printf("Node number : %d\n", depth_node(*stack, current_node));
-		print_node(current_node);
+		p_node(current_node);
 		current_node = current_node->prev;
 		counter++;
 	}
@@ -130,10 +134,10 @@ void	algo_test(t_context *context)
 
 void	sorting_test(t_context *context)
 {
-	movelist_add_n(&context->final_movelist, ra, 3);
-	print_movelist(context->final_movelist);
-	apply_movelist(context, context->final_movelist);
-	print_context(context);
+	movelist_add_n(&context->end_mvlist, ra, 3);
+	print_movelist(context->end_mvlist);
+	apply_movelist(context, context->end_mvlist);
+	p_context(context);
 	printf("\n Sorting state value :  %d\n", is_stack_sorted(context->stack_a));
 }
 void	inserted_test(void)
@@ -144,12 +148,12 @@ void	inserted_test(void)
 
 	context = context_init_debug(stack_populate((int *)&stack_a_array), stack_populate((int *)&stack_b_array));
 	/*print_context(context);*/
-	movelist_add_n(&(context->final_movelist), rb, 1);
+	movelist_add_n(&(context->end_mvlist), rb, 1);
 	for (int i = 0; i <= (int) context->stack_a->size + 5;i++)
 	{
-		movelist_add_n(&(context->final_movelist), ra, 1);
-		apply_movelist(context, context->final_movelist);
-		printf("\nStack b is : %d\n", is_stack_insertable(context->stack_a, context->stack_b));
+		movelist_add_n(&(context->end_mvlist), ra, 1);
+		apply_movelist(context, context->end_mvlist);
+		/*printf("\nStack b is : %d\n", is_stack_insertable(context->stack_a, context->stack_b));*/
 	}
 	free_context(&context);
 }

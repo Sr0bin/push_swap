@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/25 17:49:51 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:24:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,17 @@ t_node	*stack_remove_node(t_stack *stack)
 	return (temp);
 }
 
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-    t_node	*node;
+	t_node	*node;
 
-	if (*stack == NULL) 
-		return;
-    while ((*stack)->size > 0) 
+	if (*stack == NULL)
+		return ;
+	while ((*stack)->size > 0)
 	{
-        node = stack_remove_node(*stack);
-        free_node(&node);
-    }
-    free(*stack);
-    *stack = NULL;
+		node = stack_remove_node(*stack);
+		free_node(&node);
+	}
+	free(*stack);
+	*stack = NULL;
 }
