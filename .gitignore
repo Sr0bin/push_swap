@@ -1,9 +1,0 @@
-*.a
-*.o
-obj
-compile_commands.json
-.cache
-bonus
-push_swap
-push_swap_tester/
-push_swap_visualizer/
