@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 09:51:22 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:48:57 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "push_swap.h"
 #include "string.h"
 
-size_t	array_length(void **array)
+static size_t	array_length(void **array)
 {
 	size_t	size;
 
@@ -26,7 +26,7 @@ size_t	array_length(void **array)
 	return (size);
 }
 
-void	free_array(void ***array)
+static void	free_array(void ***array, size_t error)
 {
 	size_t	counter;
 
@@ -37,67 +37,69 @@ void	free_array(void ***array)
 		free((*array)[counter++]);
 	free((void *) *array);
 	*array = NULL;
+	if (error != 0)
+		error_handling(error, NULL);
+}
+
+static void	free_p(void **p)
+{
+	free(*p);
+	p = NULL;
 }
 
 int	*array_init(char *str)
 {
 	int			*array;
+	char		**nmbrs;
 	size_t		len;
-	char		**numbers;
 	long long	temp;
 
-	numbers = ft_split(str, ' ');
-	if (numbers == NULL)
+	nmbrs = ft_split(str, ' ');
+	if (nmbrs == NULL)
 		error_handling(MEM_ERROR, NULL);
-	len = array_length((void **) numbers);
+	len = array_length((void **) nmbrs);
 	array = ft_calloc(sizeof(*array), len + 1);
 	if (array == NULL)
-	{
-		free_array((void ***) &numbers);
-		error_handling(MEM_ERROR, NULL);
-	}
+		free_array((void ***) &nmbrs, MEM_ERROR);
 	array[0] = (int) len;
 	while (len != 0)
 	{
-		temp = ft_atol(numbers[len - 1]);
-		if (temp > INT_MAX || temp < INT_MIN || !ft_validnumber(numbers[len - 1]))
+		temp = ft_atol(nmbrs[len - 1]);
+		if (temp > INT_MAX || temp < INT_MIN || !ft_validnumber(nmbrs[len - 1]))
 		{
-			free_array((void ***) &numbers);
 			free(array);
-			error_handling(ARG_SIZE_INT, NULL);
+			free_array((void ***) &nmbrs, ARG_SIZE_INT);
 		}
 		array[len--] = (int) temp;
 	}
-	free_array((void ***) &numbers);
+	free_array((void ***) &nmbrs, 0);
 	return (array);
 }
 
-int	*array_join(int	**array1, int	**array2)
+int	*array_join(int	**ar1, int **ar2)
 {
 	int	i;
 	int	*new_array;
 
 	i = 1;
-	new_array = ft_calloc(sizeof(**array1), (size_t)((*array1)[0] + (*array2)[0] + 1));
+	new_array = ft_calloc(sizeof(**ar1), (size_t)((*ar1)[0] + (*ar2)[0] + 1));
 	if (new_array == NULL)
 	{
-		free(*array2);
+		free(*ar2);
 		error_handling(MEM_ERROR, NULL);
 	}
-	new_array[0] = (*array1)[0] + (*array2)[0];
-	while (i < (*array1)[0] + 1)
+	new_array[0] = (*ar1)[0] + (*ar2)[0];
+	while (i < (*ar1)[0] + 1)
 	{
-		new_array[i] = (*array1)[i];
+		new_array[i] = (*ar1)[i];
 		i++;
 	}
-	while (i < (*array1)[0] + (*array2)[0] + 1)
+	while (i < (*ar1)[0] + (*ar2)[0] + 1)
 	{
-		new_array[i] = (*array2)[i - (*array1)[0]];
+		new_array[i] = (*ar2)[i - (*ar1)[0]];
 		i++;
 	}
-	free(*array1);
-	array1 = NULL;
-	free(*array2);
-	array2 = NULL;
+	free_p((void **)ar1);
+	free_p((void **)ar2);
 	return (new_array);
 }

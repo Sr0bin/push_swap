@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:03:10 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/20 15:25:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:39:40 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@
 //------------------------------------------------- 
 
 t_context	*context_init(int argc, char **argv);
-void	apply_movelist(t_context *context, t_list *movelist);
-void	append_movelist(t_context *context, t_list *movelist);
+void		apply_movelist(t_context *context, t_list *movelist);
+void		append_movelist(t_context *context, t_list *movelist);
 void		free_context(t_context **context);
 
 //------------------------------------------------- 
 //				Moves for context
 //------------------------------------------------- 
 
-void	sa(t_context *context);
-void	sb(t_context *context);
-void	ss(t_context *context);
-void	pa(t_context *context);
-void	pb(t_context *context);
-void	ra(t_context *context);
-void	rb(t_context *context);
-void	rr(t_context *context);
-void	rra(t_context *context);
-void	rrb(t_context *context);
-void	rrr(t_context *context);
+void		sa(t_context *context);
+void		sb(t_context *context);
+void		ss(t_context *context);
+void		pa(t_context *context);
+void		pb(t_context *context);
+void		ra(t_context *context);
+void		rb(t_context *context);
+void		rr(t_context *context);
+void		rra(t_context *context);
+void		rrb(t_context *context);
+void		rrr(t_context *context);
 
 typedef enum e_move_types
 {

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:25:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:21:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static int	get_move_index(t_move move)
 	}
 	return (-1);
 }
+
 void	print_movelist(t_list *movelist)
 {
 	char	(*move_names)[11][6];

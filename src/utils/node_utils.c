@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:23:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:20:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	push_node(t_node *head, t_node *new)
 	new->prev = head;
 	next_node->prev = new;
 }
+
 void	pop_node(t_node *node)
 {
 	if (node == NULL)

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:06:22 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 15:32:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:47:31 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	reverse_rotate_stack(t_stack *n);
 //					Stat
 //------------------------------------------------- 
 
-int	stack_highest(t_stack *stack);
-int	stack_lowest(t_stack *stack);
+int		stack_highest(t_stack *stack);
+int		stack_lowest(t_stack *stack);
 #endif

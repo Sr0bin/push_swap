@@ -6,20 +6,15 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:40:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 08:49:34 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:02:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	movelist_free(void *p)
-{
-	(void) p;
-}
-
 void	free_movelist(t_list **movelist)
 {
-	ft_lstclear(movelist, movelist_free);
+	ft_lstclear(movelist, NULL);
 	*movelist = NULL;
 	movelist = NULL;
 }
@@ -51,12 +46,20 @@ void	movelist_add_n(t_list **movelist, t_move move, size_t n)
 	}
 }
 
+static t_list	*break_chain(t_list *node)
+{
+	t_list	*temp;
+
+	temp = node->next;
+	node->next = NULL;
+	return (temp);
+}
+
 t_list	*mvlist_replace_n(t_list **movelist, t_move move, size_t n, size_t end)
 {
 	t_list	*current;
 	t_list	*new;
 	t_list	*end_list;
-	t_list	*old;
 	size_t	counter;
 
 	if (movelist == NULL || *movelist == NULL || n == 0)
@@ -66,21 +69,17 @@ t_list	*mvlist_replace_n(t_list **movelist, t_move move, size_t n, size_t end)
 	end_list = ft_lstlast(*movelist);
 	while (current != NULL && counter < end)
 	{
-		if (counter == end - 1)
+		if (counter++ == end - 1)
 		{
-			end_list = current->next;
-			current->next = NULL;
+			end_list = break_chain(current);
 			break ;
 		}
 		current = current->next;
-		counter++;
 	}
-	old = *movelist;
 	new = movelist_init(move);
 	movelist_add_n(&new, move, n - 1);
 	ft_lstadd_back(&new, end_list);
+	free_movelist(movelist);
 	*movelist = new;
-	if (old != NULL)
-		free_movelist(&old);
 	return (new);
 }

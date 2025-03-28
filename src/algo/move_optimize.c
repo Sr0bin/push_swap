@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:23:10 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 08:50:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:34:21 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,59 +26,59 @@ t_list	*node_n(t_list *node, size_t n)
 
 void	replace_ra_rb(t_list **start)
 {
-	t_list	*current;
-	size_t	count_ra;
-	size_t	count_rb;
+	t_list	*temp;
+	size_t	c_ra;
+	size_t	c_rb;
 
-	current = *start;
-	count_ra = 0;
-	count_rb = 0;
-	while (current != NULL && (current->content == ra || current->content == rb))
+	temp = *start;
+	c_ra = 0;
+	c_rb = 0;
+	while (temp != NULL && (temp->content == ra || temp->content == rb))
 	{
-		if (current->content == ra)
-			count_ra++;
-		else if (current->content == rb)
-			count_rb++;
-		current = current->next;
+		if (temp->content == ra)
+			c_ra++;
+		else if (temp->content == rb)
+			c_rb++;
+		temp = temp->next;
 	}
-	if (count_ra > 0 && count_rb > 0)
+	if (c_ra > 0 && c_rb > 0)
 	{
-		if (count_ra > count_rb)
+		if (c_ra > c_rb)
 		{
-			current = node_n(*start, count_ra - count_rb - 1);
-			current->next = mvlist_replace_n(&current->next, rr, count_rb, count_rb * 2);
+			temp = node_n(*start, c_ra - c_rb - 1);
+			temp->next = mvlist_replace_n(&temp->next, rr, c_rb, c_rb * 2);
 		}
 		else
-			mvlist_replace_n(start, rr, count_ra, count_ra * 2);
+			mvlist_replace_n(start, rr, c_ra, c_ra * 2);
 	}
 }
 
 void	replace_rra_rrb(t_list **start)
 {
-	t_list	*current;
-	size_t	count_rra;
-	size_t	count_rrb;
+	t_list	*temp;
+	size_t	c_rra;
+	size_t	c_rrb;
 
-	current = *start;
-	count_rra = 0;
-	count_rrb = 0;
-	while (current != NULL && (current->content == rra || current->content == rrb))
+	temp = *start;
+	c_rra = 0;
+	c_rrb = 0;
+	while (temp != NULL && (temp->content == rra || temp->content == rrb))
 	{
-		if (current->content == rra)
-			count_rra++;
-		else if (current->content == rrb)
-			count_rrb++;
-		current = current->next;
+		if (temp->content == rra)
+			c_rra++;
+		else if (temp->content == rrb)
+			c_rrb++;
+		temp = temp->next;
 	}
-	if (count_rra > 0 && count_rrb > 0)
+	if (c_rra > 0 && c_rrb > 0)
 	{
-		if (count_rra > count_rrb)
+		if (c_rra > c_rrb)
 		{
-			current = node_n(*start, count_rra - count_rrb - 1);
-			current->next = mvlist_replace_n(&current->next, rrr, count_rrb, count_rrb * 2);
+			temp = node_n(*start, c_rra - c_rrb - 1);
+			temp->next = mvlist_replace_n(&temp->next, rrr, c_rrb, c_rrb * 2);
 		}
 		else
-			mvlist_replace_n(start, rrr, count_rra, count_rra * 2);
+			mvlist_replace_n(start, rrr, c_rra, c_rra * 2);
 	}
 }
 
@@ -98,27 +98,27 @@ void	optimize_movelist(t_list **movelist)
 	}
 }
 
-void	shortest_rotate(t_context context, t_stack *stack, t_node *node, t_list **movelist)
+void	shortest_rotate(t_context c, t_stack *s, t_node *node, t_list **mv_lst)
 {
 	int	depth;
 
-	depth = depth_node(*stack, node);
+	depth = depth_node(*s, node);
 	if (depth == -1)
 		return ;
 	if (depth == 0)
 		return ;
-	if (depth <= (int) stack->size / 2)
+	if (depth <= (int) s->size / 2)
 	{
-		if (stack == context.stack_a)
-			movelist_add_n(movelist, ra, (size_t) depth);
+		if (s == c.stack_a)
+			movelist_add_n(mv_lst, ra, (size_t) depth);
 		else
-			movelist_add_n(movelist, rb, (size_t) depth);
+			movelist_add_n(mv_lst, rb, (size_t) depth);
 	}
 	else
 	{
-		if (stack == context.stack_a)
-			movelist_add_n(movelist, rra, (stack->size - (size_t) depth));
+		if (s == c.stack_a)
+			movelist_add_n(mv_lst, rra, (s->size - (size_t) depth));
 		else
-			movelist_add_n(movelist, rrb, (stack->size - (size_t) depth));
+			movelist_add_n(mv_lst, rrb, (s->size - (size_t) depth));
 	}
 }
