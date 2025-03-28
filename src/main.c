@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 09:36:48 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:21:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	context = context_init(argc, argv); 
-	if (context->stack_a->size <= 500)
+	if (context->stack_a == NULL)
+		error_handling(ARG_NAN, NULL);
+	if (context->stack_a->size <= 26)
 		sort_five(context);
 	else
 		stack_a_loop(context);

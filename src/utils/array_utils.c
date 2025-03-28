@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:23:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 09:51:22 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	*array_init(char *str)
 	while (len != 0)
 	{
 		temp = ft_atol(numbers[len - 1]);
-		if (temp >= INT_MAX || temp <= INT_MIN || !ft_validnumber(numbers[len - 1]))
+		if (temp > INT_MAX || temp < INT_MIN || !ft_validnumber(numbers[len - 1]))
 		{
 			free_array((void ***) &numbers);
 			free(array);
