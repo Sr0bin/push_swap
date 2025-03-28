@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:00:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 19:33:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:57:37 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 //                    Forward Declarations
 //------------------------------------------------- 
 
-typedef struct s_node	t_node;
-typedef struct s_target	t_target;
+typedef struct s_node		t_node;
+typedef struct s_target		t_target;
 typedef struct s_context	t_context;
 
 //------------------------------------------------- 
 //					Target
 //------------------------------------------------- 
 
-typedef void	(*t_move)(t_context *context);
+typedef void (*				t_move)(t_context *context);
 
 typedef struct s_target
 {
@@ -69,6 +69,4 @@ typedef struct s_context
 	int		*array;
 	t_list	*end_mvlist;
 }	t_context;
-
-
 #endif

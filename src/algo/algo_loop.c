@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:24:20 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 09:38:36 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:14:54 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,100 +53,110 @@ void	apply_best_moves(t_context *context)
 	apply_movelist(context, best_node->target.movelist);
 }
 
-void	stack_a_loop(t_context *context)
+void	stack_a_loop(t_context *cont)
 {
 	t_node	*current_node;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_list	*movelist;
+	t_list	*mv_lst;
 
-	stack_a = context->stack_a;
-	stack_b = context->stack_b;
-	if (is_stack_sorted(stack_a) == 1)
+	stack_a = cont->stack_a;
+	stack_b = cont->stack_b;
+	mv_lst = NULL;
+	while (cont->stack_a->top != NULL && cont->stack_a->size > 1)
 	{
-		shortest_rotate(*context, stack_a, find_node(stack_a, stack_a->low), &(context->end_mvlist));
-		return ;
-	}
-	while (context->stack_a->top != NULL && context->stack_a->size > 1)
-	{
-		update_stack_target(context);
-		apply_best_moves(context);
+		update_stack_target(cont);
+		apply_best_moves(cont);
 	}
 	free_movelist(&stack_a->top->target.movelist);
-	if (stack_a->top->value > stack_b->high || stack_a->top->value < stack_b->low)
+	if (stack_a->top->value > stack_b->high || \
+		stack_a->top->value < stack_b->low)
 		current_node = find_target_new_hl(stack_b, stack_a->top);
 	else
 		current_node = find_target_inside(stack_b, stack_a->top);
-	movelist = NULL;
-	shortest_rotate(*context, stack_b, current_node, &movelist);
-	movelist_add_n(&movelist, pa, stack_b->size);
-	apply_movelist(context, movelist);
-	append_movelist(context, movelist);
-	movelist = NULL;
-	shortest_rotate(*context, stack_a, find_node(stack_a, stack_a->low), &movelist);
-	append_movelist(context, movelist);
-	optimize_movelist(&context->end_mvlist);
-}
-
-void apply_apnd_mvlist(t_context *context, t_list **movelist)
-{
-	apply_movelist(context, *movelist);
-	append_movelist(context, *movelist);
+	shortest_rotate(*cont, stack_b, current_node, &mv_lst);
+	movelist_add_n(&mv_lst, pa, stack_b->size);
+	apply_apnd_mvlist(cont, &mv_lst);
+	shortest_rotate(*cont, stack_a, find_node(stack_a, stack_a->low), &mv_lst);
+	append_movelist(cont, mv_lst);
+	optimize_movelist(&cont->end_mvlist);
 }
 
 void	sort_three(t_context *context)
 {
-	int		first;
+	t_node	*top;
 	int		second;
 	int		third;
 	t_list	*movelist;
 
-	first = context->stack_a->top->value;
-	second = context->stack_a->top->prev->value;
-	third = context->stack_a->top->prev->prev->value;
+	top = context->stack_a->top;
+	second = top->prev->value;
+	third = top->prev->prev->value;
 	movelist = NULL;
-	if (first > second && third > second && third > first)
+	if (top->value > second && third > second && third > top->value)
 		movelist_add_n(&movelist, sa, 1);
-	else if (first > second && third > second && first > third)
+	else if (top->value > second && third > second && top->value > third)
 		movelist_add_n(&movelist, ra, 1);
-	else if (first < second && third < second && first > third)
+	else if (top->value < second && third < second && top->value > third)
 		movelist_add_n(&movelist, rra, 1);
-	else if (first < second && third < second && first < third)
-	{
-		movelist_add_n(&movelist, sa, 1);
-		movelist_add_n(&movelist, ra, 1);
-	}
-	else if (first > second && third < second && first > third)
+	else if (top->value < second && third < second && top->value < third)
+		movelist_add_sa_ra(&movelist);
+	else if (top->value > second && third < second && top->value > third)
 	{
 		movelist_add_n(&movelist, sa, 1);
 		movelist_add_n(&movelist, rra, 1);
 	}
 	apply_apnd_mvlist(context, &movelist);
 }
+/*void	sort_three(t_context *context)*/
+/*{*/
+/*	t_node	*top;*/
+/*	int		second;*/
+/*	int		third;*/
+/*	t_list	*movelist;*/
+/**/
+/*	top = context->stack_a->top;*/
+/*	second = top->prev->value;*/
+/*	third = top->prev->prev->value;*/
+/*	movelist = NULL;*/
+/*	if (top->value > second && second > third)*/
+/*		movelist_add_n(&movelist, sa, 1);*/
+/*	else if (top->value > second && third > second)*/
+/*		movelist_add_n(&movelist, ra, 1);*/
+/*	else if (top->value < second && third < second)*/
+/*	{*/
+/*		movelist_add_n(&movelist, sa, 1);*/
+/*		movelist_add_n(&movelist, rra, 1);*/
+/*	}*/
+/*	else if (top->value < second && third > second)*/
+/*		movelist_add_n(&movelist, rra, 1);*/
+/*	apply_apnd_mvlist(context, &movelist);*/
+/*}*/
 
-void	sort_five(t_context *context)
+void	dumb_sort(t_context *context)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stk_a;
+	t_stack	*stk_b;
 	t_list	*movelist;
 
-	stack_a = context->stack_a;
-	stack_b = context->stack_b;
-	if (is_stack_sorted(stack_a) == 1)
+	stk_a = context->stack_a;
+	stk_b = context->stack_b;
+	if (is_stack_sorted(stk_a) == 1)
 	{
-		shortest_rotate(*context, stack_a, find_node(stack_a, stack_a->low), &(context->end_mvlist));
+		shortest_rotate(*context, stk_a, \
+				find_node(stk_a, stk_a->low), &(context->end_mvlist));
 		return ;
 	}
 	while (context->stack_a->size > 3)
 	{
 		movelist = NULL;
-		shortest_rotate(*context, stack_a, find_node(stack_a, stack_a->low), &movelist);
+		shortest_rotate(*context, stk_a, \
+					find_node(stk_a, stk_a->low), &movelist);
 		movelist_add_n(&movelist, pb, 1);
 		apply_apnd_mvlist(context, &movelist);
 	}
 	sort_three(context);
-	movelist = NULL;
-	shortest_rotate(*context, stack_b, find_node(stack_b, stack_b->high), &movelist);
-	movelist_add_n(&movelist, pa, stack_b->size);
+	shortest_rotate(*context, stk_b, find_node(stk_b, stk_b->high), &movelist);
+	movelist_add_n(&movelist, pa, stk_b->size);
 	apply_apnd_mvlist(context, &movelist);
 }

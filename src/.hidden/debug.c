@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:21:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/26 13:36:18 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:47:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,20 @@ t_context	*fake_context(size_t a, size_t b)
 	context = context_init_debug(stack_a, stack_b);
 	if (context == NULL)
 		return (NULL);
+	return (context);
+}
+
+t_context	*context_init_debug(t_stack *stack_a, t_stack *stack_b)
+{
+	t_context	*context;
+
+	if (stack_a == NULL || stack_b == NULL)
+		return (NULL);
+	context = ft_calloc(1, sizeof(t_context));
+	if (context == NULL)
+		error_handling(MEM_ERROR, &context);
+	error_handling(SET_CONTEXT, &context);
+	context->stack_a = stack_a;
+	context->stack_b = stack_b;
 	return (context);
 }

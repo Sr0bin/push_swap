@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:20:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:21:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:19:22 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	is_stack_sorted(t_stack *stack)
 
 t_node	*is_stack_insertable(t_stack *receiver, t_stack *ins)
 {
-	t_node	*current_node;
+	t_node	*temp;
 	size_t	counter;
 	int		sort_a;
 	int		sort_b;
 
-	current_node = receiver->top;
+	temp = receiver->top;
 	counter = 0;
 	if (receiver->size == 1)
 		return (receiver->top);
@@ -61,9 +61,9 @@ t_node	*is_stack_insertable(t_stack *receiver, t_stack *ins)
 		return (find_node(receiver, receiver->high));
 	while (counter++ < receiver->size)
 	{
-		if (ins->high < current_node->value && ins->low > current_node->prev->value)
-			return (current_node);
-		current_node = current_node->prev;
+		if (ins->high < temp->value && ins->low > temp->prev->value)
+			return (temp);
+		temp = temp->prev;
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 19:07:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 09:17:06 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:14:49 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@ t_node	*is_stack_insertable(t_stack *receiver, t_stack *inserted);
 //------------------------------------------------- 
 t_list	*mvlist_replace_n(t_list **movelist, t_move move, size_t n, size_t end);
 void	optimize_movelist(t_list **movelist);
-void	shortest_rotate(t_context context, t_stack *s, t_node *n, t_list **movelist);
-void apply_apnd_mvlist(t_context *context, t_list **movelist);
+void	shortest_rotate(t_context c, t_stack *s, t_node *n, t_list **mvlst);
+void	apply_apnd_mvlist(t_context *context, t_list **movelist);
 void	replace_ra_rb(t_list **start);
 void	replace_rra_rrb(t_list **start);
+void	movelist_add_sa_ra(t_list **movelist);
 //------------------------------------------------- 
 //					Algo
 //------------------------------------------------- 
 void	apply_best_moves(t_context *context);
 void	sort_three(t_context *context);
-void	sort_five(t_context *context);
+void	dumb_sort(t_context *context);
 void	stack_a_loop(t_context *context);
 void	update_stack_target(t_context *context);
 #endif

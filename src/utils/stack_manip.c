@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 00:01:04 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:25:53 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:20:45 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ void	push_stack(t_stack *giver, t_stack *receiver)
 		return ;
 	stack_add_node(receiver, stack_remove_node(giver));
 }
+
 void	rotate_stack(t_stack *n)
 {
 	if (n == NULL || n->top == NULL || n->size < 2)
 		return ;
 	n->top = n->top->prev;
 }
+
 void	reverse_rotate_stack(t_stack *n)
 {
 	if (n == NULL || n->top == NULL || n->size < 2)

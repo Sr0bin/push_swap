@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 19:33:19 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:32:04 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,11 @@ void	append_movelist(t_context *context, t_list *movelist)
 	ft_lstadd_back(&context->end_mvlist, movelist);
 }
 
-t_context	*context_init_debug(t_stack *stack_a, t_stack *stack_b)
+void	apply_apnd_mvlist(t_context *context, t_list **movelist)
 {
-	t_context	*context;
-
-	if (stack_a == NULL || stack_b == NULL)
-		return (NULL);
-	context = ft_calloc(1, sizeof(t_context));
-	if (context == NULL)
-		error_handling(MEM_ERROR, &context);
-	error_handling(SET_CONTEXT, &context);
-	context->stack_a = stack_a;
-	context->stack_b = stack_b;
-	return (context);
+	apply_movelist(context, *movelist);
+	append_movelist(context, *movelist);
+	*movelist = NULL;
 }
 
 void	free_context(t_context **context)
