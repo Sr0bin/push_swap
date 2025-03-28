@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/03/28 09:50:52 by rorollin         ###   ########.fr        #
+#    Updated: 2025/03/28 10:23:25 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3
 
 CFLAGS = $(CFLAGS_DEBUG)
 
-all: make_libft $(NAME)
+all: git make_libft $(NAME)
 
 $(NAME):  $(OBJECTS) $(LIBFT_PATH)
 	$(COMPILER) $(CFLAGS) $(INCLUDES) $^ -o $@
