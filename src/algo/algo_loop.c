@@ -6,13 +6,10 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:24:20 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 12:14:54 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "algo.h"
-#include "context.h"
-#include "movelist.h"
 #include "push_swap.h"
 
 void	update_stack_target(t_context *context)
