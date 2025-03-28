@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/12 16:46:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:23:16 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 size_t	array_length(void **array)
 {
-	size_t size;
+	size_t	size;
 
 	size = 0;
 	if (array == NULL)
@@ -33,7 +33,7 @@ void	free_array(void ***array)
 	counter = 0;
 	if (array == NULL || *array == NULL)
 		return ;
-	while ((*array)[counter]!= NULL)
+	while ((*array)[counter] != NULL)
 		free((*array)[counter++]);
 	free((void *) *array);
 	*array = NULL;
@@ -41,12 +41,12 @@ void	free_array(void ***array)
 
 int	*array_init(char *str)
 {
-	int	*array;
-	size_t	len;
-	char	**numbers;
+	int			*array;
+	size_t		len;
+	char		**numbers;
 	long long	temp;
 
-	numbers = ft_split(str, ' ');	
+	numbers = ft_split(str, ' ');
 	if (numbers == NULL)
 		error_handling(MEM_ERROR, NULL);
 	len = array_length((void **) numbers);
@@ -69,7 +69,7 @@ int	*array_init(char *str)
 		array[len--] = (int) temp;
 	}
 	free_array((void ***) &numbers);
-	return(array);
+	return (array);
 }
 
 int	*array_join(int	**array1, int	**array2)
@@ -78,7 +78,7 @@ int	*array_join(int	**array1, int	**array2)
 	int	*new_array;
 
 	i = 1;
-	new_array = ft_calloc(sizeof(**array1), (size_t) ((*array1)[0] + (*array2)[0] + +1));
+	new_array = ft_calloc(sizeof(**array1), (size_t)((*array1)[0] + (*array2)[0] + 1));
 	if (new_array == NULL)
 	{
 		free(*array2);
@@ -99,5 +99,5 @@ int	*array_join(int	**array1, int	**array2)
 	array1 = NULL;
 	free(*array2);
 	array2 = NULL;
-	return(new_array);
+	return (new_array);
 }

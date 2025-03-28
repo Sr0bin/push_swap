@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/25 18:46:36 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:25:33 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static char	(*get_move_names(void))[11][6]
 
 	if (!initialized)
 	{
-		ft_strlcpy(move_names[0], "(sa)\0", 5);
-		ft_strlcpy(move_names[1], "(sb)\0", 5);
-		ft_strlcpy(move_names[2], "(ss)\0", 5);
-		ft_strlcpy(move_names[3], "(pa)\0", 5);
-		ft_strlcpy(move_names[4], "(pb)\0", 5);
-		ft_strlcpy(move_names[5], "(ra)\0", 5);
-		ft_strlcpy(move_names[6], "(rb)\0", 5);
-		ft_strlcpy(move_names[7], "(rr)\0", 5);
-		ft_strlcpy(move_names[8], "(rra)\0", 6);
-		ft_strlcpy(move_names[9], "(rrb)\0", 6);
-		ft_strlcpy(move_names[10], "(rrr)\0", 6);
+		ft_strlcpy(move_names[0], "sa\0", 5);
+		ft_strlcpy(move_names[1], "sb\0", 5);
+		ft_strlcpy(move_names[2], "ss\0", 5);
+		ft_strlcpy(move_names[3], "pa\0", 5);
+		ft_strlcpy(move_names[4], "pb\0", 5);
+		ft_strlcpy(move_names[5], "ra\0", 5);
+		ft_strlcpy(move_names[6], "rb\0", 5);
+		ft_strlcpy(move_names[7], "rr\0", 5);
+		ft_strlcpy(move_names[8], "rra\0", 6);
+		ft_strlcpy(move_names[9], "rrb\0", 6);
+		ft_strlcpy(move_names[10], "rrr\0", 6);
 		initialized = 1;
 	}
 	return (&move_names);
@@ -77,7 +77,6 @@ void	print_movelist(t_list *movelist)
 	int		index;
 
 	move_names = get_move_names();
-	/*printf("\n-----------------\n Movelist at adress : %p \n", movelist);*/
 	while (movelist != NULL)
 	{
 		index = get_move_index((t_move) movelist->content);

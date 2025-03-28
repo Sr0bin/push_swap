@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 03:00:16 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 17:27:55 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:33:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_context
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		*array;
-	t_list	*final_movelist;
+	t_list	*end_mvlist;
 }	t_context;
 
 

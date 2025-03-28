@@ -6,14 +6,14 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:21:37 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/24 18:49:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:36:18 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_stack(const t_stack *stack)
+void	p_stack(const t_stack *stack)
 {
 	size_t	counter;
 	t_node	*temp;
@@ -28,12 +28,12 @@ void	print_stack(const t_stack *stack)
 	printf("Stack size = %zu | Highest : %d | Lowest : %d\n", stack->size, stack->high, stack->low);
 	while (counter != 0 && temp != NULL && temp->prev != NULL && temp->next != NULL)
 	{
-		print_node(temp);
+		p_node(temp);
 		temp = temp->prev;
 		counter--;
 	}
 }
-void	print_node(t_node *node)
+void	p_node(t_node *node)
 {
 		if (node == NULL)
 		{
@@ -45,19 +45,19 @@ void	print_node(t_node *node)
 		printf("Node with value : %i\n Address : %p \n Next : %p \n Previous : %p\n", 
 		 node->value, node, node->next, node->prev);
 }
-void	print_target(t_node *node)
+void	p_target(t_node *node)
 {
 	printf("-----------------------------------------------------\n");
 	printf("Node : \n");
-	print_node(node);
+	p_node(node);
 	printf("-----------------------------------------------------\n");
 	printf("Targeting Node : \n");
-	print_node(node->target.target_node);
+	p_node(node->target.target_node);
 	printf("-----------------------------------------------------\n");
 	printf("With Movelist : \n");
 	print_movelist(node->target.movelist);
 }
-void	print_array(int	*array)
+void	p_array(int	*array)
 {
 	int	counter;
 
@@ -87,16 +87,16 @@ t_stack	*fake_stack(size_t n)
 	return (stack);
 }
 
-void	print_context(t_context *context)
+void	p_context(t_context *context)
 {
 	printf("-----------------------------------------------------\n");
 	printf("Stack A\n");
 	printf("-----------------------------------------------------\n");
-	print_stack(context->stack_a);
+	p_stack(context->stack_a);
 	printf("-----------------------------------------------------\n");
 	printf("Stack B\n");
 	printf("-----------------------------------------------------\n");
-	print_stack(context->stack_b);
+	p_stack(context->stack_b);
 }
 
 t_context	*fake_context(size_t a, size_t b)

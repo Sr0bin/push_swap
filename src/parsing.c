@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/15 19:48:53 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:25:43 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	array_populate(int argc, char **argv, t_context *context)
 	array = NULL;
 	context->array = array_init(argv[1]);
 	counter = 2;
-	while(counter < argc)
+	while (counter < argc)
 	{
 		array = array_init(argv[counter]);
 		context->array = array_join(&(context->array), &array);
@@ -54,7 +54,7 @@ void	array_valid(const int *array)
 t_stack	*stack_populate(int *array)
 {
 	t_stack	*stack;
-	int	counter;
+	int		counter;
 
 	counter = 1;
 	if (array[0] < 1)

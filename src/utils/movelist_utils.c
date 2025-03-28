@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:40:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/21 19:07:16 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 08:49:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,38 @@ void	movelist_add_n(t_list **movelist, t_move move, size_t n)
 		ft_lstadd_back(movelist, node);
 		counter++;
 	}
+}
+
+t_list	*mvlist_replace_n(t_list **movelist, t_move move, size_t n, size_t end)
+{
+	t_list	*current;
+	t_list	*new;
+	t_list	*end_list;
+	t_list	*old;
+	size_t	counter;
+
+	if (movelist == NULL || *movelist == NULL || n == 0)
+		return (NULL);
+	current = *movelist;
+	counter = 0;
+	end_list = ft_lstlast(*movelist);
+	while (current != NULL && counter < end)
+	{
+		if (counter == end - 1)
+		{
+			end_list = current->next;
+			current->next = NULL;
+			break ;
+		}
+		current = current->next;
+		counter++;
+	}
+	old = *movelist;
+	new = movelist_init(move);
+	movelist_add_n(&new, move, n - 1);
+	ft_lstadd_back(&new, end_list);
+	*movelist = new;
+	if (old != NULL)
+		free_movelist(&old);
+	return (new);
 }
