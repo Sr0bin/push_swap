@@ -6,12 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 18:40:14 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:21:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static char	(*get_move_names(void))[11][6]
 {

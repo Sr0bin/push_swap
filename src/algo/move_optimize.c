@@ -6,12 +6,10 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:23:10 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:34:21 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "context.h"
-#include "list.h"
 #include "push_swap.h"
 
 t_list	*node_n(t_list *node, size_t n)

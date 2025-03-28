@@ -6,13 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:29:18 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:32:04 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 t_context	*context_init(int argc, char **argv)
 {

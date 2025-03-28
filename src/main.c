@@ -6,14 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:30:42 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "context.h"
-#include "error.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

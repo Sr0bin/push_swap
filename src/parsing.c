@@ -6,13 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:25:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
 #include "push_swap.h"
-#include "string.h"
 
 void	array_populate(int argc, char **argv, t_context *context)
 {
