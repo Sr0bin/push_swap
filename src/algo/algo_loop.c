@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:24:20 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:40:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,30 +105,6 @@ void	sort_three(t_context *context)
 	}
 	apply_apnd_mvlist(context, &movelist);
 }
-/*void	sort_three(t_context *context)*/
-/*{*/
-/*	t_node	*top;*/
-/*	int		second;*/
-/*	int		third;*/
-/*	t_list	*movelist;*/
-/**/
-/*	top = context->stack_a->top;*/
-/*	second = top->prev->value;*/
-/*	third = top->prev->prev->value;*/
-/*	movelist = NULL;*/
-/*	if (top->value > second && second > third)*/
-/*		movelist_add_n(&movelist, sa, 1);*/
-/*	else if (top->value > second && third > second)*/
-/*		movelist_add_n(&movelist, ra, 1);*/
-/*	else if (top->value < second && third < second)*/
-/*	{*/
-/*		movelist_add_n(&movelist, sa, 1);*/
-/*		movelist_add_n(&movelist, rra, 1);*/
-/*	}*/
-/*	else if (top->value < second && third > second)*/
-/*		movelist_add_n(&movelist, rra, 1);*/
-/*	apply_apnd_mvlist(context, &movelist);*/
-/*}*/
 
 void	dumb_sort(t_context *context)
 {
@@ -152,6 +128,7 @@ void	dumb_sort(t_context *context)
 		movelist_add_n(&movelist, pb, 1);
 		apply_apnd_mvlist(context, &movelist);
 	}
+	movelist = NULL;
 	sort_three(context);
 	shortest_rotate(*context, stk_b, find_node(stk_b, stk_b->high), &movelist);
 	movelist_add_n(&movelist, pa, stk_b->size);
