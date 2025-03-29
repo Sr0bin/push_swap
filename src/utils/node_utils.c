@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:53:31 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:20:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:49:25 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*node_init(int value)
 
 	node = ft_calloc(1, sizeof(t_node));
 	if (node == NULL)
-		error_handling(MEM_ERROR, NULL);
+		return (NULL);
 	node->prev = node;
 	node->next = node;
 	node->value = value;
@@ -51,6 +51,8 @@ void	pop_node(t_node *node)
 
 void	free_node(t_node **node)
 {
+	if ((*node)->target.movelist != NULL && (*node)->target.movelist->content != NULL)
+		free_movelist(&(*node)->target.movelist);
 	if (*node == NULL)
 		return ;
 	if ((*node)->prev != NULL)

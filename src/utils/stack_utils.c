@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:28:52 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/27 17:24:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:03:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ t_stack	*stack_init(t_node *node)
 
 	stack = ft_calloc(1, sizeof(t_stack));
 	if (stack == NULL)
+	{
+		if (node != NULL)
+			free_node(&node);
 		error_handling(MEM_ERROR, NULL);
+	}
 	stack->top = node;
 	if (node == NULL)
 	{
@@ -79,7 +83,7 @@ void	free_stack(t_stack **stack)
 
 	if (*stack == NULL)
 		return ;
-	while ((*stack)->size > 0)
+	while ((*stack)->top != NULL)
 	{
 		node = stack_remove_node(*stack);
 		free_node(&node);

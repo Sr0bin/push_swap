@@ -6,10 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 15:08:17 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "context.h"
 #include "push_swap.h"
 
 static size_t	array_length(void **array)

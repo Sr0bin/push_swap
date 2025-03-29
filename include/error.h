@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 02:58:50 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 10:46:31 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 15:52:28 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef enum e_error_types
 }	t_error_types;
 
 void	error_handling(size_t error_code, t_context **context);
-
 //------------------------------------------------- 
 //					Debug
 //------------------------------------------------- 
