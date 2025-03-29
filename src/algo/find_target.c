@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 19:07:00 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 11:18:03 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:55:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	find_best_moves(t_context context, t_node *node)
 		node->target.cost = 1;
 		return ;
 	}
-	free_movelist(&(node->target.movelist));
+	if (node->target.movelist != NULL)
+		free_movelist(&(node->target.movelist));
 	shortest_rotate(context, context.stack_a, node, &(node->target.movelist));
 	shortest_rotate(context, context.stack_b, \
 					node->target.target_node, &(node->target.movelist));

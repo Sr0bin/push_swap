@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:24:20 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 16:40:34 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:49:38 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	update_stack_target(t_context *context)
 	current_node = stack_a->top;
 	while (counter++ < stack_a->size)
 	{
+		/*current_node->target = target_init();*/
 		find_target(*context, current_node);
 		find_best_moves(*context, current_node);
 		current_node = current_node->prev;
@@ -46,8 +47,7 @@ void	apply_best_moves(t_context *context)
 		}
 		temp_node = temp_node->prev;
 	}
-	append_movelist(context, best_node->target.movelist);
-	apply_movelist(context, best_node->target.movelist);
+	apply_apnd_mvlist(context, &best_node->target.movelist);
 }
 
 void	stack_a_loop(t_context *cont)

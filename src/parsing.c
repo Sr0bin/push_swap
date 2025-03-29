@@ -6,11 +6,12 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:07:27 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stack.h"
 
 void	array_populate(int argc, char **argv, t_context *context)
 {
@@ -52,13 +53,25 @@ void	array_valid(const int *array)
 t_stack	*stack_populate(int *array)
 {
 	t_stack	*stack;
+	t_node	*temp;
 	int		counter;
 
 	counter = 1;
 	if (array[0] < 1)
 		return (NULL);
-	stack = stack_init(node_init(array[array[0] - counter + 1]));
+	temp = node_init(array[array[0] - counter + 1]);
+	if (temp == NULL)
+		error_handling(MEM_ERROR, NULL);
+	stack = stack_init(temp);
 	while (counter < array[0])
-		stack_add_node(stack, node_init(array[(array[0] - ++counter) + 1]));
+	{
+		temp = node_init(array[(array[0] - ++counter) + 1]);
+		if (temp == NULL)
+		{
+			free_stack(&stack);
+			error_handling(MEM_ERROR, NULL);
+		}
+		stack_add_node(stack, temp);
+	}
 	return (stack);
 }

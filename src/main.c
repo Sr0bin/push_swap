@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:31:35 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/28 12:33:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:51:48 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int	main(int argc, char **argv)
 	free_context(&cont);
 	return (EXIT_SUCCESS);
 }
-  
