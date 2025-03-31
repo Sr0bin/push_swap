@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:40:41 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/29 19:02:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:57:23 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	free_movelist(t_list **movelist)
 {
-
 	if (movelist == NULL || *movelist == NULL)
 		return ;
 	ft_lstclear(movelist, NULL);
