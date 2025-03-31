@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:24:20 by rorollin          #+#    #+#             */
-/*   Updated: 2025/03/29 21:02:07 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:57:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	update_stack_target(t_context *context)
 	current_node = stack_a->top;
 	while (counter++ < stack_a->size)
 	{
-		/*current_node->target = target_init();*/
 		find_target(*context, current_node);
 		find_best_moves(*context, current_node);
 		current_node = current_node->prev;
